@@ -1,0 +1,27 @@
+{
+  "name": "postech-fase2-fastfood",
+  "version": "1.0.0",
+  "description": "API com Clean Architecture",
+  "main": "index.js",
+  "scripts": {
+    "start": "cd ./ && node src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marlyprado/postech-fase2-fastfood.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marlyprado/postech-fase2-fastfood/issues"
+  },
+  "homepage": "https://github.com/marlyprado/postech-fase2-fastfood#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongoose": "^8.5.1"
+  }
+}
