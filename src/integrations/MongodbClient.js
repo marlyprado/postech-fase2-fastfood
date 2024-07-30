@@ -26,6 +26,14 @@ class MongodbClient extends IClient {
         }
     }
 
+    async getAll() {
+        try {
+            return await this.client.find({});
+        } catch (error) {
+            throw new Error(`Error fetching clients: ${error.message}`);
+        }
+    }
+
     isValidId(id) {
         return mongoose.Types.ObjectId.isValid(id);
     }

@@ -12,6 +12,7 @@ class ClientRouter {
 
     initializeRoutes() {
         this.router.post('/', this.clientController.createClient.bind(this.clientController));
+        this.router.get('/', this.clientController.getAll.bind(this.clientController)); // Nova rota
     }
 
     getRouter() {

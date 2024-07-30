@@ -13,6 +13,14 @@ class ClientGateway {
         }
     }
 
+    async getAll() {
+        try {
+            return await this.dataBaseClient.getAll();
+        } catch (error) {
+            throw new Error(`Error fetching clients: ${error.message}`);
+        }
+    }
+
     async validateClientId(clientId) {
         try {
             const isValid = this.dataBaseClient.isValidId(clientId);

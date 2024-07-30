@@ -23,6 +23,15 @@ class ClientController {
       res.status(500).json({ error: err.message });
     }
   }
+
+  async getAll(req, res) {
+    try {
+      const clients = await this.clientUseCase.getAll();
+      res.status(200).json(clients);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
 }
 
 module.exports = ClientController;

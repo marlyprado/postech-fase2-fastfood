@@ -14,6 +14,10 @@ class ClientUseCase {
         }
     }
 
+    async getAll() {
+        return await this.clientGateway.getAll();
+    }
+
     fromDataToEntity(clientData) {
         return new Client({
             cpf: clientData.cpf,

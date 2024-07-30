@@ -89,6 +89,70 @@
             }
           }
         }
+      },
+      "get": {
+        "summary": "Lista todos os clientes",
+        "responses": {
+          "200": {
+            "description": "Lista de clientes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Client"
+                  }
+                },
+                "examples": {
+                  "example1": {
+                    "summary": "Exemplo de lista de clientes",
+                    "value": [
+                      {
+                        "id": "1",
+                        "nome": "John Doe",
+                        "email": "john.doe@example.com",
+                        "cpf": "12345678912",
+                        "createdAt": "2023-10-01T00:00:00Z",
+                        "updatedAt": "2023-10-01T00:00:00Z"
+                      },
+                      {
+                        "id": "2",
+                        "nome": "Jane Doe",
+                        "email": "jane.doe@example.com",
+                        "cpf": "98765432100",
+                        "createdAt": "2023-10-01T00:00:00Z",
+                        "updatedAt": "2023-10-01T00:00:00Z"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "errorExample": {
+                    "summary": "Exemplo de resposta de erro",
+                    "value": {
+                      "error": "Error fetching clients"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     },
     "/products": {
