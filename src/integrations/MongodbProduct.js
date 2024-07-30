@@ -15,7 +15,8 @@ class MongodbProduct extends IProduct {
             createdAt: { type: Date, default: Date.now },
             updatedAt: { type: Date, default: Date.now }
         });
-        this.product = mongoose.model('Product', productSchema);
+
+        this.product = mongoose.models.Product || mongoose.model('Product', productSchema);
     }
 
     createProduct(productModel) {
@@ -32,6 +33,26 @@ class MongodbProduct extends IProduct {
             return await this.product.find({});
         } catch (error) {
             throw new Error(`Error fetching products: ${error.message}`);
+        }
+    }
+
+    async getProductsByIds(productIds) {
+        try {
+            return await this.product.find({ _id: { $in: productIds } });
+        } catch (error) {
+            throw new Error(`Error fetching products by IDs: ${error.message}`);
+        }
+    }
+
+    isValidId(id) {
+        return mongoose.Types.ObjectId.isValid(id);
+    }
+
+    async productsExists(productIds) {
+        try {
+            return await this.product.exists({ _id: { $in: productIds } });
+        } catch (error) {
+            throw new Error(`Error checking if products exists: ${error.message}`);
         }
     }
 }

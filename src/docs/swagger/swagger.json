@@ -270,6 +270,151 @@
           }
         }
       }
+    },
+    "/orders": {
+      "get": {
+        "summary": "Lista todos os pedidos",
+        "responses": {
+          "200": {
+            "description": "Lista de pedidos",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "success": {
+                    "summary": "Exemplo de resposta bem-sucedida",
+                    "value": [
+                      {
+                        "id": "123456",
+                        "clientId": "654321",
+                        "productIds": ["111", "222"],
+                        "quantity": 2,
+                        "total": 29.99,
+                        "status": "Recebido",
+                        "createdAt": "2023-10-01T12:00:00Z",
+                        "updatedAt": "2023-10-01T12:00:00Z"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "errorExample": {
+                    "summary": "Exemplo de resposta de erro",
+                    "value": {
+                      "error": "Erro ao buscar pedidos"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Cria um novo pedido",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "clientId": {
+                    "type": "string"
+                  },
+                  "productIds": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "quantity": {
+                    "type": "integer"
+                  }
+                },
+                "required": ["clientId", "productIds", "quantity"]
+              },
+              "examples": {
+                "example1": {
+                  "summary": "Exemplo de criação de Pedido 1",
+                  "value": {
+                    "clientId": "654321",
+                    "productIds": ["111", "222"],
+                    "quantity": 2
+                  }
+                },
+                "example2": {
+                  "summary": "Exemplo de erro na criação",
+                  "value": {
+                    "clientId": "654321"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Pedido criado com sucesso",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "success": {
+                    "summary": "Pedido criado com sucesso",
+                    "value": {
+                      "id": "123456",
+                      "clientId": "654321",
+                      "productIds": ["111", "222"],
+                      "quantity": 2,
+                      "total": 29.99,
+                      "status": "Recebido",
+                      "createdAt": "2023-10-01T12:00:00Z",
+                      "updatedAt": "2023-10-01T12:00:00Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "errorExample": {
+                    "summary": "Exemplo de resposta de erro",
+                    "value": {
+                      "error": "Erro ao criar pedido"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -317,6 +462,43 @@
           },
           "description": {
             "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "Order": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "clientId": {
+            "type": "string"
+          },
+          "productIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "quantity": {
+            "type": "integer"
+          },
+          "total": {
+            "type": "number"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "Recebido", "Em preparação", "Pronto", "Finalizado"
+            ]
           },
           "createdAt": {
             "type": "string",

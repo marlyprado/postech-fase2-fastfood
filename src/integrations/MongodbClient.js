@@ -14,7 +14,7 @@ class MongodbClient extends IClient {
             createdAt: { type: Date, default: Date.now },
             updatedAt: { type: Date, default: Date.now }
         });
-        this.client = mongoose.model('Client', clientSchema);
+        this.client = mongoose.models.Client || mongoose.model('Client', clientSchema);
     }
 
     createClient(clientModel) {
@@ -23,6 +23,18 @@ class MongodbClient extends IClient {
             return newClient.save();
         } catch (error) {
             return Promise.reject(new Error(`Error creating client: ${error.message}`));
+        }
+    }
+
+    isValidId(id) {
+        return mongoose.Types.ObjectId.isValid(id);
+    }
+
+    async clientExists(clientId) {
+        try {
+            return await this.client.exists({ _id: clientId });
+        } catch (error) {
+            throw new Error(`Error checking if client exists: ${error.message}`);
         }
     }
 }
