@@ -8,7 +8,7 @@ class MongodbClient extends IClient {
 
         connectDB();
         const clientSchema = mongoose.Schema({
-            cpf: { type: String, required: true },
+            cpf: { type: String, required: false },
             nome: { type: String, required: true },
             email: { type: String, required: true },
             createdAt: { type: Date, default: Date.now },

@@ -8,8 +8,8 @@ class MongodbOrder extends IOrder {
 
         connectDB();
         const orderSchema = mongoose.Schema({
-            clientId: { type: String, required: true },
-            productIds: { type: [String], required: true },
+            clientId: { type: mongoose.Schema.Types.ObjectId, ref: 'Client', required: true },
+            productIds: { type: [mongoose.Schema.Types.ObjectId], ref: 'Product', required: true },
             quantity: { type: Number, required: true },
             total: { type: Number, required: true },
             status: { type: String, default: 'Recebido' },
@@ -30,7 +30,9 @@ class MongodbOrder extends IOrder {
 
     async getAll() {
         try {
-            return await this.order.find({});
+            return await this.order.find({})
+                .populate('clientId')
+                .populate('productIds');
         } catch (error) {
             throw new Error(`Error fetching orders: ${error.message}`);
         }

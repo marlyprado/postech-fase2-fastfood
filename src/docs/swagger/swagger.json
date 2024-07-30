@@ -285,8 +285,37 @@
                     "value": [
                       {
                         "id": "123456",
-                        "clientId": "654321",
-                        "productIds": ["111", "222"],
+                        "clientId": {
+                          "_id": "66a8b2cc96d2ef6471b2d82d",
+                          "cpf": "12345678912",
+                          "nome": "John Doe",
+                          "email": "john.doe@example.com",
+                          "createdAt": "2024-07-30T09:30:52.225Z",
+                          "updatedAt": "2024-07-30T09:30:52.225Z",
+                          "__v": 0
+                        },
+                        "productIds": [
+                          {
+                            "_id": "66a8d2f653aba32975a666d1",
+                            "name": "Produto Exemplo",
+                            "price": 19.99,
+                            "category": "Lanche",
+                            "description": "Descrição do produto exemplo",
+                            "createdAt": "2024-07-30T11:48:06.372Z",
+                            "updatedAt": "2024-07-30T11:48:06.372Z",
+                            "__v": 0
+                          },
+                          {
+                            "_id": "66a8d2f653aba32975a666d2",
+                            "name": "Produto Exemplo 2",
+                            "price": 9.99,
+                            "category": "Bebida",
+                            "description": "Descrição do produto exemplo",
+                            "createdAt": "2024-07-30T11:38:06.372Z",
+                            "updatedAt": "2024-07-30T11:38:06.372Z",
+                            "__v": 0
+                          }
+                        ],
                         "quantity": 2,
                         "total": 29.99,
                         "status": "Recebido",
@@ -442,7 +471,8 @@
             "type": "string",
             "format": "date-time"
           }
-        }
+        },
+        "required": ["nome", "email"]
       },
       "Product": {
         "type": "object",

@@ -85,12 +85,12 @@ docker rm registry
 5. TODO - O cliente acompanha o pedido 
    * Mostrar status do pedido
      * GET /orders/:id/status
-6. TODO - O atendente atualiza o status do pedido
+6. DOING - O atendente atualiza o status do pedido
     * Listar os pedidos a serem feitos pela cozinha
       * GET /orders
     * Atualizar status do pedido
      * PUT /orders/:id/status
-7. TODO - O administrador lista os clientes para campanhas promocionais
+7. O administrador lista os clientes para campanhas promocionais
     * Listar clientes
       * GET /clients
 

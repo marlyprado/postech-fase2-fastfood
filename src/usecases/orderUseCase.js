@@ -22,7 +22,23 @@ class OrderUseCase {
 
     async getAll() {
         try {
-            return await this.orderGateway.getAll();
+            const orders = await this.orderGateway.getAll();
+            const filteredOrders = orders.filter(order => order.status !== 'Finalizado');
+
+            const statusOrder = {
+                'Pronto': 1,
+                'Em preparação': 2,
+                'Recebido': 3
+            };
+
+            filteredOrders.sort((a, b) => {
+                if (statusOrder[a.status] !== statusOrder[b.status]) {
+                    return statusOrder[a.status] - statusOrder[b.status];
+                }
+                return new Date(a.createdAt) - new Date(b.createdAt);
+            });
+
+            return filteredOrders;
         } catch (err) {
             throw new Error(err.message);
         }
