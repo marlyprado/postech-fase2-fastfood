@@ -6,13 +6,13 @@ API com Clean Architecture
 ## Setup
 
 Você vai precisar do
-Node.js v18.16.0 com o nvm 0.39.0
+Node.js v18.10.0 com o nvm 0.39.0
 Possui as dependências: Express, Mongoose, Dotenv e Body-parser.
 
 ### local
 
 ```bash
-npm run start
+nvm use v18.10.0 && npm run start
 ```
 
 ### ou com Docker
@@ -92,6 +92,7 @@ docker rm registry
 ## Como que o sistema funciona?
 
 Ele foi feito com Clean Architecture, então o sistema está preparado para troca de integrações.
+
 Estrutura de diretórios da camada mais externa para a mais interna.
 
 - API: Possui as rotas da API no padrão rest, estão subdivididas por usecase.
