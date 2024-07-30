@@ -336,87 +336,6 @@
       }
     },
     "/orders": {
-      "get": {
-        "summary": "Lista todos os pedidos",
-        "responses": {
-          "200": {
-            "description": "Lista de pedidos",
-            "content": {
-              "application/json": {
-                "examples": {
-                  "success": {
-                    "summary": "Exemplo de resposta bem-sucedida",
-                    "value": [
-                      {
-                        "id": "123456",
-                        "clientId": {
-                          "_id": "66a8b2cc96d2ef6471b2d82d",
-                          "cpf": "12345678912",
-                          "nome": "John Doe",
-                          "email": "john.doe@example.com",
-                          "createdAt": "2024-07-30T09:30:52.225Z",
-                          "updatedAt": "2024-07-30T09:30:52.225Z",
-                          "__v": 0
-                        },
-                        "productIds": [
-                          {
-                            "_id": "66a8d2f653aba32975a666d1",
-                            "name": "Produto Exemplo",
-                            "price": 19.99,
-                            "category": "Lanche",
-                            "description": "Descrição do produto exemplo",
-                            "createdAt": "2024-07-30T11:48:06.372Z",
-                            "updatedAt": "2024-07-30T11:48:06.372Z",
-                            "__v": 0
-                          },
-                          {
-                            "_id": "66a8d2f653aba32975a666d2",
-                            "name": "Produto Exemplo 2",
-                            "price": 9.99,
-                            "category": "Bebida",
-                            "description": "Descrição do produto exemplo",
-                            "createdAt": "2024-07-30T11:38:06.372Z",
-                            "updatedAt": "2024-07-30T11:38:06.372Z",
-                            "__v": 0
-                          }
-                        ],
-                        "quantity": 2,
-                        "total": 29.99,
-                        "status": "Recebido",
-                        "createdAt": "2023-10-01T12:00:00Z",
-                        "updatedAt": "2023-10-01T12:00:00Z"
-                      }
-                    ]
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Erro interno de servidor",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "error": {
-                      "type": "string"
-                    }
-                  }
-                },
-                "examples": {
-                  "errorExample": {
-                    "summary": "Exemplo de resposta de erro",
-                    "value": {
-                      "error": "Erro ao buscar pedidos"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
       "post": {
         "summary": "Cria um novo pedido",
         "requestBody": {
@@ -500,6 +419,87 @@
                     "summary": "Exemplo de resposta de erro",
                     "value": {
                       "error": "Erro ao criar pedido"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Lista todos os pedidos",
+        "responses": {
+          "200": {
+            "description": "Lista de pedidos",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "success": {
+                    "summary": "Exemplo de resposta bem-sucedida",
+                    "value": [
+                      {
+                        "id": "123456",
+                        "clientId": {
+                          "_id": "66a8b2cc96d2ef6471b2d82d",
+                          "cpf": "12345678912",
+                          "nome": "John Doe",
+                          "email": "john.doe@example.com",
+                          "createdAt": "2024-07-30T09:30:52.225Z",
+                          "updatedAt": "2024-07-30T09:30:52.225Z",
+                          "__v": 0
+                        },
+                        "productIds": [
+                          {
+                            "_id": "66a8d2f653aba32975a666d1",
+                            "name": "Produto Exemplo",
+                            "price": 19.99,
+                            "category": "Lanche",
+                            "description": "Descrição do produto exemplo",
+                            "createdAt": "2024-07-30T11:48:06.372Z",
+                            "updatedAt": "2024-07-30T11:48:06.372Z",
+                            "__v": 0
+                          },
+                          {
+                            "_id": "66a8d2f653aba32975a666d2",
+                            "name": "Produto Exemplo 2",
+                            "price": 9.99,
+                            "category": "Bebida",
+                            "description": "Descrição do produto exemplo",
+                            "createdAt": "2024-07-30T11:38:06.372Z",
+                            "updatedAt": "2024-07-30T11:38:06.372Z",
+                            "__v": 0
+                          }
+                        ],
+                        "quantity": 2,
+                        "total": 29.99,
+                        "status": "Recebido",
+                        "createdAt": "2023-10-01T12:00:00Z",
+                        "updatedAt": "2023-10-01T12:00:00Z"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "errorExample": {
+                    "summary": "Exemplo de resposta de erro",
+                    "value": {
+                      "error": "Erro ao buscar pedidos"
                     }
                   }
                 }
