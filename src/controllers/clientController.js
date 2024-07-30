@@ -18,7 +18,7 @@ class ClientController {
       const savedClient = await this.clientUseCase.create(clientData);
 
       const presentedClient = ClientPresenter.present(savedClient);
-      res.json(presentedClient);
+      res.status(201).json(presentedClient);
     } catch (err) {
       res.status(500).json({ error: err.message });
     }

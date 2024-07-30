@@ -18,8 +18,12 @@ class MongodbClient extends IClient {
     }
 
     createClient(clientModel) {
-        const newClient = this.client(clientModel);
-        return newClient.save();
+        try {
+            const newClient = this.client(clientModel);
+            return newClient.save();
+        } catch (error) {
+            return Promise.reject(new Error(`Error creating client: ${error.message}`));
+        }
     }
 }
 

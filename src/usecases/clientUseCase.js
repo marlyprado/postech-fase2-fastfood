@@ -7,11 +7,19 @@ class ClientUseCase {
 
     async create(clientData) {
         try {
-            const newClient = new Client(clientData);
+            const newClient = this.fromDataToEntity(clientData);
             return await this.clientGateway.create(newClient);
         } catch (err) {
             throw new Error(err.message);
         }
+    }
+
+    fromDataToEntity(clientData) {
+        return new Client({
+            cpf: clientData.cpf,
+            nome: clientData.nome,
+            email: clientData.email
+        });
     }
 }
 

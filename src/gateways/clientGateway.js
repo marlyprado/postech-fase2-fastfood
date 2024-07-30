@@ -8,19 +8,11 @@ class ClientGateway {
     }
 
     async create(clientData) {
-        const savedClient = this.dataBaseClient.createClient(clientData);
-        return this.fromModelToEntity(savedClient);
-    }
-
-    fromModelToEntity(clientModel) {
-        return new Client({
-            id: clientModel._id,
-            cpf: clientModel.cpf,
-            nome: clientModel.nome,
-            email: clientModel.email,
-            createdAt: clientModel.createdAt,
-            updatedAt: clientModel.updatedAt
-        });
+        try {
+            return await this.dataBaseClient.createClient(clientData);
+        } catch (error) {
+            throw new Error(`Error creating client: ${error.message}`);
+        }
     }
 }
 
