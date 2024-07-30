@@ -24,7 +24,67 @@ Irá subir 2 containers, o do mongo e do API.
 docker compose up
 ```
 
-### ou com Kubernetes
+## Utilização
+
+1. O administrador inicia o estoque
+   * Cadastrar produtos com uma das 4 categorias: Lanche, Bebida, Acompanhamento ou Sobremesa.
+     * POST /products
+2. Chegada do cliente
+   * Cadastrar o cliente com o CPF, nome e email
+     * POST /clients
+   * Listar os produtos para o combo (lanche, bebida e acompanhamento)
+     * GET /products/combo
+3. O client faz o pedido
+   * Inserir um pedido com os produtos e quantidades 
+     * POST /orders
+4. O client faz o pagamento
+   * Gerar o QRcode
+     * GET /orders/:id/qrcode
+   * O pagamento pode ser aprovado pelo sistema externo
+     * POST /orders/:id/payment_approved
+5. O cliente acompanha o pedido 
+   * Mostrar status do pedido
+     * GET /orders/:id/status
+6. O atendente atualiza o status do pedido
+    * Listar os pedidos a serem feitos pela cozinha
+      * GET /orders
+    * Atualizar status do pedido
+     * PUT /orders/:id/status
+7. O administrador lista os clientes para campanhas promocionais
+    * Listar clientes
+      * GET /clients
+
+### Diagrama de Sequência
+
+![Diagrama de Sequência](diagrams/PosTechFase2Fastfood-DiagramaDeSequencia.drawio.png)
+
+### Consultar swagger
+
+* Com a aplicação rodando, acesse
+  * [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
+* Arquivo direto pela sua IDE
+  * [./src/docs/swagger/swagger.json](src/docs/swagger/swagger.json)
+
+## Como que o sistema funciona?
+
+Ele foi feito com Clean Architecture, então o sistema está preparado para troca de integrações.
+
+Estrutura de diretórios da camada mais externa para a mais interna.
+
+- API: Possui as rotas da API no padrão rest, estão subdivididas por usecase.
+- Integrations: possui a conexão do mongo e dos seus databases.
+- Gateways: possui o a interface para as conexões com os banco de dados e o padrão que será passado para o usecase. 
+- Controllers: Passa as conexões externas para o usecase. 
+- Presenters: possui as classes de saída de dados. 
+- Usecases: possui as operações a serem realizadas pelo sistema.
+- Entities: São as classes core do negócio.
+
+### Arquitetura da aplicação
+
+![Arquitetura da aplicação](diagrams/PosTechFase2Fastfood-ArquiteturaDaAplicação.drawio.png)
+
+
+## Deploy com Kubernetes
 
 Você vai precisar do docker, minikube e kubectl.
 
@@ -63,57 +123,6 @@ minikube stop
 docker stop registry
 docker rm registry
 ```
-
-## Utilização
-
-1. O administrador inicia o estoque
-   * Cadastrar produtos com uma das 4 categorias: Lanche, Bebida, Acompanhamento ou Sobremesa.
-     * POST /products
-2. Chegada do cliente
-   * Cadastrar o cliente com o CPF, nome e email
-     * POST /clients
-   * Listar os produtos para o combo (lanche, bebida e acompanhamento)
-     * GET /products/combo
-3. O client faz o pedido
-   * Inserir um pedido com os produtos e quantidades 
-     * POST /orders
-4. O client faz o pagamento
-   * Gerar o QRcode
-     * GET /orders/:id/qrcode
-   * O pagamento pode ser aprovado pelo sistema externo
-     * POST /orders/:id/payment_approved
-5. O cliente acompanha o pedido 
-   * Mostrar status do pedido
-     * GET /orders/:id/status
-6. O atendente atualiza o status do pedido
-    * Listar os pedidos a serem feitos pela cozinha
-      * GET /orders
-    * Atualizar status do pedido
-     * PUT /orders/:id/status
-7. O administrador lista os clientes para campanhas promocionais
-    * Listar clientes
-      * GET /clients
-
-### Consultar swagger
-
-* Com a aplicação rodando, acesse
-  * [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
-* Arquivo direto pela sua IDE
-  * [./src/docs/swagger/swagger.json](src/docs/swagger/swagger.json)
-
-## Como que o sistema funciona?
-
-Ele foi feito com Clean Architecture, então o sistema está preparado para troca de integrações.
-
-Estrutura de diretórios da camada mais externa para a mais interna.
-
-- API: Possui as rotas da API no padrão rest, estão subdivididas por usecase.
-- Integrations: possui a conexão do mongo e dos seus databases.
-- Gateways: possui o a interface para as conexões com os banco de dados e o padrão que será passado para o usecase. 
-- Controllers: Passa as conexões externas para o usecase. 
-- Presenters: possui as classes de saída de dados. 
-- Usecases: possui as operações a serem realizadas pelo sistema.
-- Entities: São as classes core do negócio.
 
 ### Contribuições
 
