@@ -82,6 +82,13 @@ docker rm registry
 
 3. TODO - Criação do pedido
 
+### Consultar swagger
+
+* Com a aplicação rodando, acesse
+  * [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
+* Arquivo direto pela sua IDE
+  * [./src/docs/swagger/swagger.json](src/docs/swagger/swagger.json)
+
 ## Como que o sistema funciona?
 
 Ele foi feito com Clean Architecture, então o sistema está preparado para troca de integrações.
