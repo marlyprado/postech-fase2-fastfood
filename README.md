@@ -66,21 +66,33 @@ docker rm registry
 
 ## Utilização
 
-1. TODO - Iniciar o estoque
-2. Chegada do cliente 
-      
-    ```bash
-    curl --location 'localhost:3000/clients' \
-    --header 'Content-Type: application/json' \
-    --data-raw '{
-        "id": "123",
-        "cpf": "12345678912",
-        "nome": "Nome Sobrenome",
-        "email": "nome@sobrenome.com"
-    }'
-    ```
-
-3. TODO - Criação do pedido
+1. O administrador inicia o estoque
+   * Cadastrar produtos com uma das 4 categorias: Lanche, Bebida, Acompanhamento ou Sobremesa.
+     * POST /products
+2. Chegada do cliente
+   * Cadastrar o cliente com o CPF, nome e email
+     * POST /clients
+   * Listar os produtos para o combo (lanche, bebida e acompanhamento)
+     * GET /products-for-combo
+3. TODO - O client faz o pedido
+   * Inserir um pedido com os produtos e quantidades 
+     * POST /orders
+4. TODO - O client faz o pagamento
+   * Gerar o QRcode
+     * GET /orders/:id/qrcode
+   * O pagamento pode ser aprovado pelo sistema externo
+     * POST /orders/:id/payment_approved
+5. TODO - O cliente acompanha o pedido 
+   * Mostrar status do pedido
+     * GET /orders/:id/status
+6. TODO - O atendente atualiza o status do pedido
+    * Listar os pedidos a serem feitos pela cozinha
+      * GET /orders
+    * Atualizar status do pedido
+     * PUT /orders/:id/status
+7. TODO - O administrador lista os clientes para campanhas promocionais
+    * Listar clientes
+      * GET /clients
 
 ### Consultar swagger
 
