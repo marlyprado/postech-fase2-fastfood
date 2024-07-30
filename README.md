@@ -26,7 +26,43 @@ docker compose up
 
 ### ou com Kubernetes
 
-Você vai precisar do minikube.
+Você vai precisar do docker, minikube e kubectl.
+
+1. gera imagem para o docker local
+```bash
+eval $(minikube docker-env)
+docker build -t postech-fase2-fastfood-api:latest .
+kubectl apply -f k8s/app-deployment.yaml
+```
+
+2. configuração do minikube
+```bash
+minikube start
+minikube status
+kubectl config use-context minikube
+kubectl cluster-info
+```
+3. configurar o k8s
+```bash
+kubectl apply -f k8s/mongo-deployment.yaml
+kubectl apply -f k8s/mongo-service.yaml
+kubectl apply -f k8s/app-deployment.yaml
+kubectl apply -f k8s/app-service.yaml
+```
+
+4. acompanhar o ambiente
+```bash
+kubectl get pods
+kubectl get services
+minikube service app-service
+```
+
+5. parar o ambiente
+```bash
+minikube stop
+docker stop registry
+docker rm registry
+```
 
 ## Utilização
 
