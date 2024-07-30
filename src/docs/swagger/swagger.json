@@ -1,0 +1,124 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Postech - Fase 2 - Fastfood",
+    "version": "1.0.0",
+    "description": "API com Clean Architecture"
+  },
+  "paths": {
+    "/clients": {
+      "post": {
+        "summary": "Cria um novo cliente",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "nome": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "cpf": {
+                    "type": "string"
+                  }
+                },
+                "required": ["nome", "email", "cpf"]
+              },
+              "examples": {
+                "example1": {
+                  "summary": "Exemplo de criação de Cliente 1",
+                  "value": {
+                    "nome": "John Doe",
+                    "email": "john.doe@example.com",
+                    "cpf": "12345678912"
+                  }
+                },
+                "example2": {
+                  "summary": "Exemplo de erro na criação",
+                  "value": {
+                    "none": "Jane Doe"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Cliente criado com sucesso",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "success": {
+                    "summary": "Cliente criado com sucesso",
+                    "value": {
+                      "cpf": "12345678912",
+                      "nome": "John Doe",
+                      "email": "john.doe@example.com"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "errorExample": {
+                    "summary": "Exemplo de resposta de erro",
+                    "value": {
+                      "error": "Error creating client: Missing required fields"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Client": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "nome": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "cpf": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    }
+  }
+}

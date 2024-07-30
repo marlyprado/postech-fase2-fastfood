@@ -7,6 +7,7 @@ const app = express();
 
 // add-ons
 app.use(bodyParser.json());
+require('./docs/swagger/swagger')(app);
 
 // routes
 const routes = require('./api/routes');
