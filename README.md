@@ -73,7 +73,7 @@ docker rm registry
    * Cadastrar o cliente com o CPF, nome e email
      * POST /clients
    * Listar os produtos para o combo (lanche, bebida e acompanhamento)
-     * GET /products-for-combo
+     * GET /products/combo
 3. TODO - O client faz o pedido
    * Inserir um pedido com os produtos e quantidades 
      * POST /orders

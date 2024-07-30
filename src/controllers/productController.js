@@ -23,6 +23,15 @@ class ProductController {
             res.status(500).json({ error: err.message });
         }
     }
+
+    async getProductsForCombo(req, res) {
+        try {
+            const categorizedProducts = await this.productUseCase.getProductsForCombo();
+            res.json(categorizedProducts);
+        } catch (err) {
+            res.status(500).json({ error: err.message });
+        }
+    }
 }
 
 module.exports = ProductController;

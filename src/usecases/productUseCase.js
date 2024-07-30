@@ -14,6 +14,23 @@ class ProductUseCase {
         }
     }
 
+    async getAll() {
+        return await this.productGateway.getAll();
+    }
+
+    async getProductsForCombo() {
+        const products = await this.getAll();
+        const filteredProducts = products.filter(product =>
+            ["Lanche", "Acompanhamento", "Bebida"].includes(product.category)
+        ).sort((a, b) => a.name.localeCompare(b.name));
+
+        return {
+            Lanche: filteredProducts.filter(product => product.category === "Lanche"),
+            Acompanhamento: filteredProducts.filter(product => product.category === "Acompanhamento"),
+            Bebida: filteredProducts.filter(product => product.category === "Bebida")
+        };
+    }
+
     fromDataToEntity(productData) {
         return new Product({
             name: productData.name,

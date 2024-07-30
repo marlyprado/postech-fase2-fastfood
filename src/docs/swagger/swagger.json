@@ -192,6 +192,84 @@
           }
         }
       }
+    },
+    "/products/combo": {
+      "get": {
+        "summary": "Lista produtos para o combo",
+        "description": "Retorna uma lista de produtos das categorias 'Lanche', 'Acompanhamento' e 'Bebida' ordenados por nome.",
+        "responses": {
+          "200": {
+            "description": "Lista de produtos para combo",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "success": {
+                    "summary": "Exemplo de resposta bem-sucedida",
+                    "value": {
+                      "Lanche": [
+                        {
+                          "_id": "66a8d2cc53aba32975a666cd",
+                          "name": "Hamburguer",
+                          "price": "10.00",
+                          "category": "Lanche",
+                          "description": "Delicioso hamburguer",
+                          "createdAt": "2023-10-01T12:00:00Z",
+                          "updatedAt": "2023-10-01T12:00:00Z"
+                        }
+                      ],
+                      "Acompanhamento": [
+                        {
+                          "_id": "66a8d2cc53aba32975a666c2",
+                          "name": "Batata Frita",
+                          "price": "5.00",
+                          "category": "Acompanhamento",
+                          "description": "Batata frita crocante",
+                          "createdAt": "2023-10-01T12:00:00Z",
+                          "updatedAt": "2023-10-01T12:00:00Z"
+                        }
+                      ],
+                      "Bebida": [
+                        {
+                          "_id": "66a8d2cc53aba32975a666c3",
+                          "name": "Refrigerante",
+                          "price": "3.00",
+                          "category": "Bebida",
+                          "description": "Refrigerante gelado",
+                          "createdAt": "2023-10-01T12:00:00Z",
+                          "updatedAt": "2023-10-01T12:00:00Z"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "errorExample": {
+                    "summary": "Exemplo de resposta de erro",
+                    "value": {
+                      "error": "Erro ao buscar produtos"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {

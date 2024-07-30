@@ -12,6 +12,7 @@ class ProductRouter {
 
     initializeRoutes() {
         this.router.post('/', this.productController.createProduct.bind(this.productController));
+        this.router.get('/combo', this.productController.getProductsForCombo.bind(this.productController));
     }
 
     getRouter() {

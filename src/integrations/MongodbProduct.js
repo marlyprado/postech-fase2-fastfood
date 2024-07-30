@@ -26,6 +26,14 @@ class MongodbProduct extends IProduct {
             return Promise.reject(new Error(`Error creating product: ${error.message}`));
         }
     }
+
+    async getAll() {
+        try {
+            return await this.product.find({});
+        } catch (error) {
+            throw new Error(`Error fetching products: ${error.message}`);
+        }
+    }
 }
 
 module.exports = MongodbProduct;
