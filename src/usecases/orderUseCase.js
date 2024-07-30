@@ -44,6 +44,14 @@ class OrderUseCase {
         }
     }
 
+    async updateStatus(id, status) {
+        try {
+            return await this.orderGateway.updateStatus(id, status);
+        } catch (err) {
+            throw new Error(err.message);
+        }
+    }
+
     calculateTotal(products, quantity) {
         return products.reduce((sum, product) => {
             const price = parseFloat(product.price);

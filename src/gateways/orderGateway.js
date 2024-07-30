@@ -18,6 +18,14 @@ class OrderGateway {
             throw new Error(`Error fetching orders: ${error.message}`);
         }
     }
+
+    async updateStatus(id, status) {
+        try {
+            return await this.dataBaseOrder.updateStatus(id, status);
+        } catch (error) {
+            throw new Error(`Error updating order status: ${error.message}`);
+        }
+    }
 }
 
 module.exports = OrderGateway;

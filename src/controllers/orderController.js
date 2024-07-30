@@ -32,6 +32,17 @@ class OrderController {
             res.status(500).json({ error: err.message });
         }
     }
+
+    async updateStatus(req, res) {
+        try {
+            const { id } = req.params;
+            const { status } = req.body;
+            const updatedOrder = await this.orderUseCase.updateStatus(id, status);
+            res.status(200).json(updatedOrder);
+        } catch (error) {
+            res.status(500).json({ error: error.message });
+        }
+    }
 }
 
 module.exports = OrderController;

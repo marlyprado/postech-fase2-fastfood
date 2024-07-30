@@ -17,6 +17,7 @@ class OrderRouter {
     initializeRoutes() {
         this.router.get('/', this.orderController.getAll.bind(this.orderController));
         this.router.post('/', this.orderController.create.bind(this.orderController));
+        this.router.put('/:id/status', this.orderController.updateStatus.bind(this.orderController));
     }
 
     getRouter() {

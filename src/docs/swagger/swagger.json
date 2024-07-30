@@ -508,6 +508,123 @@
           }
         }
       }
+    },
+    "/orders/{id}/status": {
+      "put": {
+        "summary": "Atualiza o status de um pedido",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "Recebido",
+                      "Em preparação",
+                      "Pronto",
+                      "Finalizado"
+                    ]
+                  }
+                },
+                "required": [
+                  "status"
+                ]
+              },
+              "examples": {
+                "example1": {
+                  "summary": "Exemplo de atualização de status",
+                  "value": {
+                    "status": "Em preparação"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Status do pedido atualizado com sucesso",
+            "content": {
+              "application/json": {
+                "examples": {
+                  "success": {
+                    "summary": "Status atualizado com sucesso",
+                    "value": {
+                      "id": "123456",
+                      "clientId": "654321",
+                      "productIds": ["111", "222"],
+                      "quantity": 2,
+                      "total": 29.99,
+                      "status": "Recebido",
+                      "createdAt": "2023-10-01T12:00:00Z",
+                      "updatedAt": "2023-10-01T12:00:00Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Requisição inválida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "errorExample": {
+                    "summary": "Exemplo de resposta de erro",
+                    "value": {
+                      "error": "Status inválido"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno de servidor",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "examples": {
+                  "errorExample": {
+                    "summary": "Exemplo de resposta de erro",
+                    "value": {
+                      "error": "Erro ao atualizar status do pedido"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {

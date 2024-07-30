@@ -37,6 +37,14 @@ class MongodbOrder extends IOrder {
             throw new Error(`Error fetching orders: ${error.message}`);
         }
     }
+
+    async updateStatus(id, status) {
+        try {
+            return await this.order.findByIdAndUpdate(id, { status }, { new: true });
+        } catch (error) {
+            throw new Error(`Error updating order status: ${error.message}`);
+        }
+    }
 }
 
 module.exports = MongodbOrder;

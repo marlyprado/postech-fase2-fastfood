@@ -77,15 +77,15 @@ docker rm registry
 3. O client faz o pedido
    * Inserir um pedido com os produtos e quantidades 
      * POST /orders
-4. TODO - O client faz o pagamento
+4. O client faz o pagamento
    * Gerar o QRcode
      * GET /orders/:id/qrcode
    * O pagamento pode ser aprovado pelo sistema externo
      * POST /orders/:id/payment_approved
-5. TODO - O cliente acompanha o pedido 
+5. O cliente acompanha o pedido 
    * Mostrar status do pedido
      * GET /orders/:id/status
-6. DOING - O atendente atualiza o status do pedido
+6. O atendente atualiza o status do pedido
     * Listar os pedidos a serem feitos pela cozinha
       * GET /orders
     * Atualizar status do pedido
