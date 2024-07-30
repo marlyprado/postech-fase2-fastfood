@@ -1,5 +1,3 @@
-const Client = require('../entities/client');
-
 class ClientGateway {
     dataBaseClient;
 
