@@ -86,13 +86,13 @@ Estrutura de diretórios da camada mais externa para a mais interna.
 
 ## Deploy com Kubernetes
 
-Você vai precisar do docker, minikube e kubectl.
+Para um ambiente Ubuntu 22.04, 
+você precisa do docker (26.1.4, build 5650f9b), kubectl (v5.0.1) e minikube (v1.33.1).
 
 1. gera imagem para o docker local
 ```bash
 eval $(minikube docker-env)
 docker build -t postech-fase2-fastfood-api:latest .
-kubectl apply -f k8s/app-deployment.yaml
 ```
 
 2. configuração do minikube
@@ -112,19 +112,35 @@ kubectl apply -f k8s/app-service.yaml
 
 4. acompanhar o ambiente
 ```bash
-kubectl get pods
-kubectl get services
+kubectl get all
 minikube service app-service
 ```
+ou em separado
 
-5. parar o ambiente
+```bash
+kubectl get deployments
+kubectl get pods
+kubectl get services
+kubectl get replicasets
+```
+
+5. pegar o endereço da aplicação
+```bash
+minikube service app-service --url
+```
+
+6. parar o ambiente
 ```bash
 minikube stop
 docker stop registry
 docker rm registry
 ```
 
-### Contribuições
+### Arquitetura da aplicação
+
+![Arquitetura do K8s](diagrams/PosTechFase2Fastfood-ArquiteturaK8s.jpg)
+
+## Contribuições
 
 O projeto utiliza convention commit.
 
